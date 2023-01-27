@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { View, Image, StyleSheet, TouchableHighlight } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import AppText from "./AppText";
-import colors from "../config/colors";
+import AppText from "../AppText";
+import colors from "../../config/colors";
 
 function ListItem({
   title,
@@ -12,6 +13,7 @@ function ListItem({
   IconComponent,
   onPress,
   renderRightActions,
+  showChevrons = false,
 }) {
   return (
     <Swipeable renderRightActions={renderRightActions}>

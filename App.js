@@ -4,7 +4,15 @@ import { useState } from "react";
 //   useDimensions,
 //   useDeviceOrientation,
 // } from "@react-native-community/hooks";
-import { StyleSheet, Text, View, Image, Alert, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Alert,
+  TextInput,
+  Switch,
+} from "react-native";
 
 // Screens
 import WelcomeScreen from "./app/screens/WelcomeScreen";
@@ -16,11 +24,11 @@ import ListingsScreen from "./app/screens/ListingsScreen";
 import Screen from "./app/components/Screen";
 import AppTextInput from "./app/components/AppTextInput";
 import colors from "./app/config/colors";
+import AppPicker from "./app/components/AppPicker";
+import LoginScreen from "./app/screens/LoginScreen";
+import RegisterScreen from "./app/screens/RegisterScreen";
+import ListingEditScreen from "./app/screens/ListingEditScreen";
 
 export default function App() {
-  return (
-    <Screen>
-      <AppTextInput placeholder="Username" icon="email" />
-    </Screen>
-  );
+  return <ListingEditScreen></ListingEditScreen>;
 }
