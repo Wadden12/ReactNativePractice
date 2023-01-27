@@ -5,6 +5,12 @@ import { useState } from "react";
 // Video 8 on Platform specific has a neat seciton on class per platform
 
 //Border examples
+// switch puts a little toogle button on the app
+// const [isNew, setIsNew] = useState(false);
+{
+  /* <Switch value={isNew} onValueChange={(neValue) => setIsNew(neValue)} /> */
+}
+
 <View
   style={{
     flex: 1,
@@ -105,3 +111,36 @@ import { useState } from "react";
     }}
   />
 </Screen>;
+
+// Picker example for notes
+const [category, setCategory] = useState();
+
+const categories = [
+  {
+    label: "Furniture",
+    value: 1,
+  },
+  {
+    label: "Clothing",
+    value: 2,
+  },
+  {
+    label: "Cameras",
+    value: 3,
+  },
+];
+
+<Screen>
+  <AppPicker
+    selectedItem={category}
+    onSelectItem={(item) => setCategory(item)}
+    items={categories}
+    placeholder="Category"
+    icon="apps"
+  />
+
+  <AppTextInput placeholder="Username" icon="email" />
+</Screen>;
+
+// on change alternative example
+// onChangeText={(text) => setPassword(text)}
