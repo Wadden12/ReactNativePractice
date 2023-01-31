@@ -1,5 +1,7 @@
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import * as ImagePicker from "expo-image-picker";
+
 // import {
 //   useDimensions,
 //   useDeviceOrientation,
@@ -12,6 +14,7 @@ import {
   Alert,
   TextInput,
   Switch,
+  Button,
 } from "react-native";
 
 // Screens
@@ -22,13 +25,33 @@ import MessagesScreen from "./app/screens/MessagesScreen";
 import MyAccountScreen from "./app/screens/MyAccountScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
 import Screen from "./app/components/Screen";
-import AppTextInput from "./app/components/AppTextInput";
+import AppTextInput from "./app/components/TextInput";
 import colors from "./app/config/colors";
 import AppPicker from "./app/components/AppPicker";
 import LoginScreen from "./app/screens/LoginScreen";
 import RegisterScreen from "./app/screens/RegisterScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
+import ImageInputList from "./app/components/ImageInputList";
 
 export default function App() {
-  return <ListingEditScreen></ListingEditScreen>;
+  const [imageUris, setImageUris] = useState([]);
+
+  const handleAdd = (uri) => {
+    setImageUris([...imageUris, uri]);
+  };
+
+  const handleDelete = (uri) => {
+    setImageUris(imageUris.filter((imageUris) => imageUris !== uri));
+  };
+
+  return (
+    <Screen>
+      <ImageInputList
+        imageUris={imageUris}
+        // uri => handleAdd(uri)} is the same as below
+        onAddImage={handleAdd}
+        onRemoveImage={handleDelete}
+      />
+    </Screen>
+  );
 }

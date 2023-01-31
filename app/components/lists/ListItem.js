@@ -22,9 +22,22 @@ function ListItem({
           {IconComponent}
           {image && <Image style={styles.image} source={image} />}
           <View style={styles.detailsContainer}>
-            <AppText style={styles.title}>{title}</AppText>
-            {subTitle && <AppText style={styles.subTitle}>{subTitle}</AppText>}
+            <AppText numberOfLines={1} style={styles.title}>
+              {title}
+            </AppText>
+            {subTitle && (
+              <AppText numberofLines={2} style={styles.subTitle}>
+                {subTitle}
+              </AppText>
+            )}
           </View>
+          {showChevrons && (
+            <MaterialCommunityIcons
+              color={colors.medium}
+              name="chevron-right"
+              size={25}
+            />
+          )}
         </View>
       </TouchableHighlight>
     </Swipeable>
@@ -33,10 +46,12 @@ function ListItem({
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: "center",
     padding: 15,
     flexDirection: "row",
   },
   detailsContainer: {
+    flex: 1,
     marginLeft: 10,
     justifyContent: "center",
   },
