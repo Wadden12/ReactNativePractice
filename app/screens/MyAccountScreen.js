@@ -6,8 +6,9 @@ import colors from "../config/colors";
 import Screen from "../components/Screen";
 import Icon from "../components/Icon";
 import ListItemSeperator from "../components/lists/ListItemSeperator";
+import routes from "../navigation/routes";
 
-function MyAccountScreen(props) {
+function MyAccountScreen({ navigation }) {
   const menuItems = [
     {
       title: "My Listings",
@@ -22,6 +23,7 @@ function MyAccountScreen(props) {
         name: "email",
         menuColor: colors.secondary,
       },
+      targetScreen: routes.MESSAGES,
     },
   ];
   return (
@@ -46,6 +48,7 @@ function MyAccountScreen(props) {
                   backgroundColor={item.icon.menuColor}
                 />
               }
+              onPress={() => navigation.navigate(item.targetScreen)}
             />
           )}
           ItemSeparatorComponent={<ListItemSeperator />}
