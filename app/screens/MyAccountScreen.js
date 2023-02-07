@@ -7,32 +7,36 @@ import Screen from "../components/Screen";
 import Icon from "../components/Icon";
 import ListItemSeperator from "../components/lists/ListItemSeperator";
 import routes from "../navigation/routes";
+import useAuth from "../auth/useAuth";
+
+const menuItems = [
+  {
+    title: "My Listings",
+    icon: {
+      name: "format-list-bulleted",
+      menuColor: colors.primary,
+    },
+  },
+  {
+    title: "My Messages",
+    icon: {
+      name: "email",
+      menuColor: colors.secondary,
+    },
+    targetScreen: routes.MESSAGES,
+  },
+];
 
 function MyAccountScreen({ navigation }) {
-  const menuItems = [
-    {
-      title: "My Listings",
-      icon: {
-        name: "format-list-bulleted",
-        menuColor: colors.primary,
-      },
-    },
-    {
-      title: "My Messages",
-      icon: {
-        name: "email",
-        menuColor: colors.secondary,
-      },
-      targetScreen: routes.MESSAGES,
-    },
-  ];
+  const { user, logOut } = useAuth();
+
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
         <ListItem
           image={require("../assets/mike.jpeg")}
-          title="Mike Wadden"
-          subTitle="mike@email.com"
+          title={user.name}
+          subTitle={user.email}
         />
       </View>
       <View style={styles.container}>
@@ -60,6 +64,7 @@ function MyAccountScreen({ navigation }) {
           IconComponent={
             <Icon name="logout" backgroundColor={colors.warning} />
           }
+          onPress={() => logOut()}
         />
       </View>
     </Screen>
