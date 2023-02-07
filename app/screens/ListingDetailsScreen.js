@@ -1,14 +1,25 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import {
+  View,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from "react-native";
 import AppText from "../components/AppText";
 import { Image } from "react-native-expo-image-cache";
 import ListItem from "../components/lists/ListItem";
 import colors from "../config/colors";
+import ContactSellerForm from "../components/ContactSellerForm";
 
 function ListingDetailsScreen({ route }) {
   const listing = route.params;
   return (
-    <View>
+    <KeyboardAvoidingView
+      behavior="position"
+      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
+    >
       {/* <Image style={styles.image} source={listing.images[0]} /> */}
       <Image
         style={styles.image}
@@ -18,18 +29,23 @@ function ListingDetailsScreen({ route }) {
         tint="light"
         uri={listing.images[0].url}
       />
-      <View style={styles.detailsContainer}>
-        <AppText style={styles.title}>{listing.title}</AppText>
-        <AppText style={styles.price}>{listing.price}</AppText>
-      </View>
-      <View style={styles.userContainer}>
-        <ListItem
-          image={require("../assets/mike.jpeg")}
-          title="Mike Wadden"
-          subTitle="10 Listings"
-        />
-      </View>
-    </View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.detailsContainer}>
+          <AppText style={styles.title}>{listing.title}</AppText>
+          <AppText style={styles.price}>{listing.price}</AppText>
+
+          <View style={styles.userContainer}>
+            <ListItem
+              image={require("../assets/mike.jpeg")}
+              title="Mike Wadden"
+              subTitle="10 Listings"
+            />
+          </View>
+
+          <ContactSellerForm listing={listing} />
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -52,9 +68,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "500",
   },
-  userContainer: {
-    marginVertical: 30,
-  },
+  userContainer: {},
 });
 
 export default ListingDetailsScreen;

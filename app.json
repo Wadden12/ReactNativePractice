@@ -21,6 +21,9 @@
       "supportsTablet": true
     },
     "description":"A Marketplace for selling things you no longer need",
+    "notification":{
+      "iosDisplayInForeground" : true
+    },
   
     "android": {
       "adaptiveIcon": {
