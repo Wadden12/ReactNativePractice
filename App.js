@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import navigationTheme from "./app/navigation/navigationTheme";
 import { StyleSheet, Text, View, Button } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
+import * as Notifications from "expo-notifications";
 
 //Nav
 import AuthNavigator from "./app/navigation/AuthNavigator";
@@ -11,6 +12,7 @@ import AppNavigator from "./app/navigation/AppNavigator";
 import OfflineNotice from "./app/components/OfflineNotice";
 import AuthContext from "./app/auth/contex";
 import authStorage from "./app/auth/storage";
+import { navigationRef } from "./app/navigation/rootNavigation";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -50,7 +52,7 @@ export default function App() {
     <AuthContext.Provider value={{ user, setUser }}>
       <View style={styles.container} onLayout={onLayoutRootView}>
         <OfflineNotice />
-        <NavigationContainer theme={navigationTheme}>
+        <NavigationContainer ref={navigationRef} theme={navigationTheme}>
           {user ? <AppNavigator /> : <AuthNavigator />}
         </NavigationContainer>
       </View>
