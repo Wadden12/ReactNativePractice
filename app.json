@@ -18,14 +18,17 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.codewithmike.donewithit",
+      "buildNumber": "1.0.0"
     },
-    "description":"A Marketplace for selling things you no longer need",
-    "notification":{
-      "iosDisplayInForeground" : true
+    "description": "A Marketplace for selling things you no longer need",
+    "notification": {
+      "iosDisplayInForeground": true
     },
-  
     "android": {
+      "package":"com.codewithmike.donewithit",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -33,6 +36,11 @@
     },
     "web": {
       "favicon": "./app/assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "529cde57-d2a3-4f3f-a657-7788f3e3ffb6"
+      }
     }
   }
 }

@@ -19,4 +19,5 @@ web-build/
 .env.test.local
 .env.production.local
 .env.local
-app/api/client.js
+
+app/config/settings.js
